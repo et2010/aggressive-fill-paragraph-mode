@@ -54,10 +54,7 @@ Bulleted by *, + or -."
 (declare-function org-element-type "org-element" element)
 (defun afp-in-org-table? ()
   "Check if point is inside an ‘org-mode’ table."
-  (interactive)
-  (and (derived-mode-p 'org-mode)
-       (or (eql (org-element-type (org-element-at-point)) 'table)
-           (eql (org-element-type (org-element-at-point)) 'table-row))))
+  (org-at-table-p 'type))
 
 (defun afp-in-org-src-block-header? ()
   (let ((case-fold-search t))
