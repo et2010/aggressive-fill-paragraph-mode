@@ -141,7 +141,9 @@ Argument JUSTIFY is passed on to the fill function."
 
 Fill paragraph when space is inserted and fill is not disabled
 for any reason."
-  (when (and (-contains? afp-fill-keys last-command-event)
+  (when (and (or (-contains? afp-fill-keys last-command-event)
+                 (string-prefix-p "CJK" (get-char-code-property
+                                         last-command-event 'name)))
              (not (afp-suppress-fill?)))
 
     ;; Delete the charcter before filling and reinsert after. This is
