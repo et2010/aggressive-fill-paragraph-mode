@@ -74,6 +74,10 @@ Bulleted by *, + or -."
            (beginning-of-line)
            (looking-at-p "^[ \t]*#\\+\\(\\(begin\\|end\\)_src\\|header\\|name\\)")))))
 
+(defun afp-in-org-src-block? ()
+  (and (derived-mode-p 'org-mode)
+       (get-char-property (point) 'src-block)))
+
 (defcustom afp-suppress-fill-pfunction-list
   (list
    #'afp-repeated-whitespace?
@@ -81,6 +85,7 @@ Bulleted by *, + or -."
    #'afp-bullet-list-in-comments?
    #'afp-in-org-table?
    #'afp-in-org-src-block-header?
+   #'afp-in-org-src-block?
    )
   "Functions to check if filling should be suppressed.
 
